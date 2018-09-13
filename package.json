@@ -1,0 +1,26 @@
+{
+  "name": "pen-memories",
+  "version": "1.0.0",
+  "description": "Save your school notes either scanned image or text.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./server/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cauldyclark15/pen-memories.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cauldyclark15/pen-memories/issues"
+  },
+  "homepage": "https://github.com/cauldyclark15/pen-memories#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "cors": "^2.8.4",
+    "express": "^4.16.3"
+  }
+}
