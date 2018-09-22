@@ -1,7 +1,6 @@
 const uploadForm = document.getElementById('uploadForm');
 const fileInput = document.getElementById('fileInput');
-const fireButton = document.getElementById('fireButton');
-var preview = document.querySelector('.preview');
+const preview = document.querySelector('.preview');
 
 uploadForm.addEventListener('submit', function(event) {
   event.preventDefault();
@@ -12,8 +11,11 @@ uploadForm.addEventListener('submit', function(event) {
     method: 'POST',
     body: formData,
   })
-    .then(() => {
-      alert('Yo Yo YO');
+    .then(res => {
+      return res.json();
+    })
+    .then(json => {
+      console.log(json);
     })
     .catch(error => console.log(error.message));
 });
