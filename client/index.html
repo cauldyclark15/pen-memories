@@ -9,14 +9,18 @@
 </head>
 
 <body>
-  <h1>Hello, welcome to Pen Memories.</h1>
-    <form action="upload" method="post" encType="multipart/form-data">
-      <h3>Upload Image File Here</h3>
-      <p>only accepts image files</p>
-      <input type="file" name="inputFile" value="">
-      <input type="submit" />
-    </form>
-  <script src="../server/server.js"></script>
+  <h1>Hello, welcome to my Samgup.</h1>
+  <form id="uploadForm">
+    <h3>Upload Image File Here</h3>
+    <p>only accepts image files</p>
+    <div class="preview">
+      <p>No files currently selected for upload</p>
+    </div>
+    <input id='fileInput' type="file" name="inputFile">
+    <input id='fireButton' type="submit" />
+  </form>
+  <script src="./main.js"></script>
+  <script src="./anotherUpload.js"></script>
 </body>
 
 </html>
