@@ -39,7 +39,7 @@ function updateImageDisplay() {
       var listItem = document.createElement('li');
       var para = document.createElement('p');
       if (validFileType(curFiles[i])) {
-        para.textContent = para.textContent =
+        para.textContent =
           'File name ' +
           curFiles[i].name +
           ', file size ' +
