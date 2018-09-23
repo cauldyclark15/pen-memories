@@ -16,6 +16,9 @@ uploadForm.addEventListener('submit', function(event) {
     })
     .then(json => {
       console.log(json);
+      alert(json.status);
+      fileInput.value = '';
+      updateImageDisplay();
     })
     .catch(error => console.log(error.message));
 });
@@ -23,6 +26,7 @@ uploadForm.addEventListener('submit', function(event) {
 fileInput.addEventListener('change', updateImageDisplay);
 
 function updateImageDisplay() {
+  console.log('awyis');
   while (preview.firstChild) {
     preview.removeChild(preview.firstChild);
   }

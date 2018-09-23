@@ -34,16 +34,16 @@ var upload = multer({
 var uploadCall = (req, res) => {
   upload(req, res, err => {
     if (req.Error) {
-      res.json({ Error: req.Error });
+      res.json({ error: req.Error });
       return;
     } else if (err) {
-      res.json({ Error: 'Error while uploading file' });
+      res.json({ error: 'Error while uploading file' });
       return;
     } else if (!req.file) {
       res.json({ status: 'No file selected' });
       return;
     } else {
-      res.json({ status: 'ok' });
+      res.json({ status: 'File Uploaded Successfully' });
     }
   });
 };
