@@ -1,6 +1,6 @@
 const uploadForm = document.getElementById('uploadForm');
 const fileInput = document.getElementById('fileInput');
-const preview = document.querySelector('.preview');
+const preview = document.getElementById('preview');
 
 uploadForm.addEventListener('submit', function(event) {
   event.preventDefault();
@@ -39,7 +39,7 @@ function updateImageDisplay() {
       var listItem = document.createElement('li');
       var para = document.createElement('p');
       if (validFileType(curFiles[i])) {
-        para.textContent =
+        para.textContent = para.textContent =
           'File name ' +
           curFiles[i].name +
           ', file size ' +
