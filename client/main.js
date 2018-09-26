@@ -5,7 +5,12 @@ const preview = document.getElementById('preview');
 uploadForm.addEventListener('submit', function(event) {
   event.preventDefault();
   const formData = new FormData();
-  formData.append('inputFile', fileInput.files[0]);
+
+  //fileInput.files - Nodelist
+
+  for (var i = 0; i < fileInput.files.length; i++) {
+    formData.append('inputFile', fileInput.files[i]);
+  }
 
   fetch('/upload', {
     method: 'POST',
@@ -16,7 +21,7 @@ uploadForm.addEventListener('submit', function(event) {
     })
     .then(json => {
       console.log(json);
-      alert(json.status);
+      alert(json.message);
       fileInput.value = '';
       updateImageDisplay();
     })
@@ -26,7 +31,6 @@ uploadForm.addEventListener('submit', function(event) {
 fileInput.addEventListener('change', updateImageDisplay);
 
 function updateImageDisplay() {
-  console.log('awyis');
   while (preview.firstChild) {
     preview.removeChild(preview.firstChild);
   }

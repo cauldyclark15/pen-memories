@@ -29,21 +29,21 @@ var upload = multer({
     }
     cb(null, true);
   },
-}).single('inputFile');
+}).array('inputFile', 10);
 
 var uploadCall = (req, res) => {
   upload(req, res, err => {
     if (req.Error) {
-      res.json({ error: req.Error });
+      res.json({ message: req.Error });
       return;
     } else if (err) {
-      res.json({ error: 'Error while uploading file' });
+      res.json({ message: 'Error while uploading file' });
       return;
-    } else if (!req.file) {
-      res.json({ status: 'No file selected' });
+    } else if (!req.files) {
+      res.json({ message: 'No file selected' });
       return;
     } else {
-      res.json({ status: 'File Uploaded Successfully' });
+      res.json({ message: 'File Uploaded Successfully' });
     }
   });
 };
