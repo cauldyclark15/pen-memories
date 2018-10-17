@@ -39,7 +39,7 @@ var uploadCall = (req, res) => {
     } else if (err) {
       res.json({ message: 'Error while uploading file' });
       return;
-    } else if (!req.files) {
+    } else if (req.files == '') {
       res.json({ message: 'No file selected' });
       return;
     } else {

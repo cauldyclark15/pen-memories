@@ -1,15 +1,19 @@
 const uploadForm = document.getElementById('uploadForm');
 const fileInput = document.getElementById('fileInput');
 const preview = document.getElementById('preview');
+const firebasemsg = document.getElementById('firebasemsg');
 
 uploadForm.addEventListener('submit', function(event) {
   event.preventDefault();
   const formData = new FormData();
-
   //fileInput.files - Nodelist
 
   for (var i = 0; i < fileInput.files.length; i++) {
     formData.append('inputFile', fileInput.files[i]);
+
+    if (fileInput.files.length != 0) {
+      firebaseUpload(fileInput.files[i]);
+    }
   }
 
   fetch('/upload', {
@@ -89,4 +93,23 @@ function returnFileSize(number) {
   } else if (number >= 1048576) {
     return (number / 1048576).toFixed(1) + 'MB';
   }
+}
+
+//==================================
+//      FIREBASE
+//==================================
+
+const ref = firebase.storage().ref('images');
+
+function firebaseUpload(files) {
+  const filename = +new Date() + '-' + files.name;
+  const metadata = { contentType: files.type };
+
+  console.log(filename, metadata);
+
+  const task = ref.child(filename).put(files, metadata);
+  task.then(snapshot => snapshot.ref.getDownloadURL()).then(url => {
+    console.log(`FirebaseURL: ${url}`);
+    firebasemsg.innerHTML = `<br><a href='${url}' target='_blank'>Check the Firebase Image</a>`;
+  });
 }

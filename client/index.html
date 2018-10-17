@@ -18,9 +18,26 @@
     </div>
     <input id='fileInput' type="file" name="inputFile" multiple>
     <input id='fireButton' type="submit" />
+    <div id='firebasemsg'></div>
   </form>
+  <!-- FIREBASE -->
+  <script src="https://www.gstatic.com/firebasejs/5.5.4/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.5.4/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.5.4/firebase-storage.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.5.4/firebase.js"></script>
+  <script>
+    var config = {
+      apiKey: 'AIzaSyBtYAtuYW_UpldABfgcxZQNWuYp7nUnMZY',
+      authDomain: 'pen-memories.firebaseapp.com',
+      databaseURL: 'https://pen-memories.firebaseio.com',
+      projectId: 'pen-memories',
+      storageBucket: 'pen-memories.appspot.com',
+      messagingSenderId: '764474416761',
+    };
+    firebase.initializeApp(config);
+  </script>
+  <!-- MAIN -->
   <script src="./main.js"></script>
-  <script src="./anotherUpload.js"></script>
 </body>
 
 </html>
