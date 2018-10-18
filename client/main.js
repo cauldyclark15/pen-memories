@@ -11,11 +11,11 @@ uploadForm.addEventListener('submit', function (event) {
   for (var i = 0; i < fileInput.files.length; i++) {
     formData.append('inputFile', fileInput.files[i]);
 
-    // if (fileInput.files.length != 0) {
-    //   messageTest = '';
-    //   firebasemsg.innerHTML = `<br><div>Loading...</div>`;
-    //   firebaseUpload(fileInput.files[i]);
-    // }
+    if (fileInput.files.length != 0) {
+      messageTest = '';
+      firebasemsg.innerHTML = `<br><div>Loading...</div>`;
+      firebaseUpload(fileInput.files[i]);
+    }
   }
 
   fetch('/upload', {
