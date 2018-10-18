@@ -12,6 +12,8 @@ uploadForm.addEventListener('submit', function(event) {
     formData.append('inputFile', fileInput.files[i]);
 
     if (fileInput.files.length != 0) {
+      messageTest = '';
+      firebasemsg.innerHTML = `<br><div>Loading...</div>`;
       firebaseUpload(fileInput.files[i]);
     }
   }
@@ -100,6 +102,7 @@ function returnFileSize(number) {
 //==================================
 
 const ref = firebase.storage().ref('images');
+var messageTest = '';
 
 function firebaseUpload(files) {
   const filename = +new Date() + '-' + files.name;
@@ -108,8 +111,10 @@ function firebaseUpload(files) {
   console.log(filename, metadata);
 
   const task = ref.child(filename).put(files, metadata);
+
   task.then(snapshot => snapshot.ref.getDownloadURL()).then(url => {
     console.log(`FirebaseURL: ${url}`);
-    firebasemsg.innerHTML = `<br><a href='${url}' target='_blank'>Check the Firebase Image</a>`;
+    messageTest += `<br><a href='${url}' target='_blank'>Check the Firebase Image</a>`;
+    firebasemsg.innerHTML = messageTest;
   });
 }
