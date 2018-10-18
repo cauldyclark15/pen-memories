@@ -1,27 +1,25 @@
 const fs = require('fs');
 const path = require('path');
 const uuid = require('uuid').v1;
-
 const uploadDir = path.join(__dirname, 'uploads');
-
 const multer = require('multer');
 
 var storage = multer.diskStorage({
-  destination: function(req, file, cb) {
+  destination: function (req, file, cb) {
     if (!fs.existsSync(uploadDir)) {
       fs.mkdirSync(uploadDir);
       console.log('Uploads directory created');
     }
     cb(null, uploadDir);
   },
-  filename: function(req, file, cb) {
+  filename: function (req, file, cb) {
     cb(null, uuid() + '_' + file.originalname);
   },
 });
 
 var upload = multer({
   storage: storage, //calls multer.diskStorage
-  fileFilter: function(req, file, cb) {
+  fileFilter: function (req, file, cb) {
     let imageTest = /^image/i.test(file.mimetype);
     if (imageTest !== true) {
       req.Error = 'File is not an image file';
@@ -31,8 +29,10 @@ var upload = multer({
   },
 }).array('inputFile', 10);
 
-var uploadCall = (req, res) => {
+var uploadCall = (req, res, cb) => {
+
   upload(req, res, err => {
+
     if (req.Error) {
       res.json({ message: req.Error });
       return;
@@ -43,6 +43,12 @@ var uploadCall = (req, res) => {
       res.json({ message: 'No file selected' });
       return;
     } else {
+
+      //reading file from storage path
+      var bufferFile = fs.readFileSync(req.files[0].path)
+      var fileType = req.files[0].mimetype
+      cb(bufferFile, fileType)
+
       res.json({ message: 'File Uploaded Successfully' });
     }
   });

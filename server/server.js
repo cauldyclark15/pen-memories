@@ -3,8 +3,8 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const path = require('path');
 const local = require('./app');
-
 const app = express();
+
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -17,6 +17,36 @@ app.get('/', (req, res) => {
   res.sendFile(htmlPath + '/index.html');
 });
 
-app.post('/upload', (req, res) => {
-  local.uploadCall(req, res);
+app.post('/upload', function cb(req, res) {
+
+  local.uploadCall(req, res, cb = (buffer, fileType) => {
+
+    savetoMongoDB(buffer, fileType)
+
+  })
 });
+
+
+//=================================================================
+//                          MONGODB
+//=================================================================
+
+const mongoose = require('mongoose')
+require('dotenv').config()
+
+mongoose.connect(process.env.DATABASE, { useNewUrlParser: true })
+
+//Models
+const { Images } = require('./models_schema/images')
+
+savetoMongoDB = (buffer, fileType) => {
+  const images = new Images({ img: { data: buffer, contentType: fileType } })
+
+  images.save((err, doc) => {
+    if (err) {
+      console.log(err)
+      return
+    }
+    console.log(doc)
+  })
+}

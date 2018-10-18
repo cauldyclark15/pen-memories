@@ -3,7 +3,7 @@ const fileInput = document.getElementById('fileInput');
 const preview = document.getElementById('preview');
 const firebasemsg = document.getElementById('firebasemsg');
 
-uploadForm.addEventListener('submit', function(event) {
+uploadForm.addEventListener('submit', function (event) {
   event.preventDefault();
   const formData = new FormData();
   //fileInput.files - Nodelist
@@ -11,11 +11,11 @@ uploadForm.addEventListener('submit', function(event) {
   for (var i = 0; i < fileInput.files.length; i++) {
     formData.append('inputFile', fileInput.files[i]);
 
-    if (fileInput.files.length != 0) {
-      messageTest = '';
-      firebasemsg.innerHTML = `<br><div>Loading...</div>`;
-      firebaseUpload(fileInput.files[i]);
-    }
+    // if (fileInput.files.length != 0) {
+    //   messageTest = '';
+    //   firebasemsg.innerHTML = `<br><div>Loading...</div>`;
+    //   firebaseUpload(fileInput.files[i]);
+    // }
   }
 
   fetch('/upload', {
