@@ -19,9 +19,9 @@ app.get('/', (req, res) => {
 
 app.post('/upload', function cb(req, res) {
 
-  local.uploadCall(req, res, cb = (buffer, fileType) => {
+  local.uploadCall(req, res, cb = (bufferFile, fileType) => {
 
-    savetoMongoDB(buffer, fileType)
+    savetoMongoDB(bufferFile, fileType)
 
   })
 });
