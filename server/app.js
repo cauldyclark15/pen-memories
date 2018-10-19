@@ -55,5 +55,5 @@ var uploadCall = (req, res, cb) => {
 };
 
 module.exports = {
-  uploadCall: uploadCall,
+  uploadCall,
 };
